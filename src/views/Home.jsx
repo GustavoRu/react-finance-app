@@ -15,7 +15,6 @@ export default function Home(props) {
       })
       .then((data) => {
         setDataDollars(data);
-        console.log("data", data);
         setLoading(false);
       })
       .catch((error) => {
