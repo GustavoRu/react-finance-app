@@ -1,4 +1,5 @@
 import React from "react";
+import PaidIcon from '@mui/icons-material/Paid';
 
 export default function Navbar() {
   return (
@@ -9,11 +10,14 @@ export default function Navbar() {
       <div className="flex w-full flex-wrap items-center justify-between px-3">
         <div>
           <a className="mx-2 my-1 flex items-center lg:mb-0 lg:mt-0" href="/">
-            <img
-              src="../../public/img/icons8-caja-de-dinero.svg"
+            {/* <img
+              src={SavingsIcon}
               alt="Imagen app"
               // className="max-w-xs"
               style={{ height: "50px" }}
+            /> */}
+            <PaidIcon 
+              sx={{ color: "#ffff", fontSize: "40px" }}
             />
           </a>
         </div>
