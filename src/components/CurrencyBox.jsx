@@ -3,7 +3,7 @@ export default function CurrencyBox({ type, buyPrice, sellPrice, spread }) {
       <div className="bg-white dark:bg-neutral-800 p-4 rounded-md shadow-md w-full">
         {/* Título y Tipo de Dólar */}
         <div className="flex items-center justify-between mb-4">
-          <p className="text-lg font-semibold text-transform: uppercase">{type}</p>
+          <p className="text-lg font-semibold text-transform: uppercase text-white">{type}</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 text-gray-500"

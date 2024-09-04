@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import CurrencyBox from "./CurrencyBox";
+import LineChart from "../components/LineChart";
+import CurrencyBox from "../components/CurrencyBox";
+import CalculationBox from "../components/CalculationBox";
 
 export default function Home(props) {
   const [dataDollars, setDataDollars] = useState([]);
+  const [dataInflation, setDataInflation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  useEffect(() => {
+  const [errorInflation, setErrorInflation] = useState(null);
+
+  const fetchDataDollars = () => {
     fetch("https://dolarapi.com/v1/dolares")
       .then((response) => {
         if (!response.ok) {
@@ -21,12 +26,23 @@ export default function Home(props) {
         setError(error);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchDataDollars();
+    // fetchDataInflation();
   }, []);
 
   return (
     <div className="min-h-screen bg-[#1a202c] dark:bg-[#1a202c] p-7">
       <div className="grid gap-6">
-        {" "}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+          <CalculationBox dataInflation={dataInflation} />
+          <LineChart
+            dataInflation={dataInflation}
+            setDataInflation={setDataInflation}
+          />
+        </div>
         {/* Elimina grid-rows-3 y h-[90vh] */}
         {/* Primera fila */}
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
