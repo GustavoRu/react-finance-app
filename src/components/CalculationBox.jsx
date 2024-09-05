@@ -79,38 +79,38 @@ export default function CalculationBox(props) {
   }, [dataInflation]);
 
   return (
-    <div className="bg-gray-100 dark:bg-neutral-800 flex flex-col items-center justify-center p-5">
-      <h2 className="text-4xl font-black text-gray-800 dark:text-white">
+    <div className="bg-gray-100 dark:bg-neutral-800 flex flex-col items-center justify-center p-4">
+      <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-1">
         Ajuste Salarial
       </h2>
-      <p className="text-gray-600 dark:text-gray-300">
+      <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
         Calcula tu nuevo sueldo en base a la inflación
       </p>
-      <div className="bg-white dark:bg-neutral-700 shadow-md rounded-md mt-10 px-5 py-10 w-full max-w-md">
+      <div className="bg-white dark:bg-neutral-700 shadow-md rounded-md mt-2 px-4 py-8 w-full max-w-md">
         {/* Información adicional */}
-        <div className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-md p-4 mb-6">
+        <div className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-md p-3 mb-4">
           <p>
             Inflación seleccionada:{" "}
             <span className="font-bold">
               {(inflationRates[period] * 100).toFixed(2)}%
             </span>
           </p>
-          <p className="mt-2">
+          <p className="mt-1">
             Datos actualizados hasta:{" "}
             <span className="font-bold">{lastAvailableMonth}</span>
             <Tooltip
               title="Los datos de inflación pueden tardar hasta 15 días posteriores al mes corriente en publicarse por el INDEC."
               arrow
             >
-              <IconButton className="bg-white">
-                <InfoIcon color="inherit" />
+              <IconButton className="ml-1 bg-transparent p-0">
+                <InfoIcon color="inherit" fontSize="small" />
               </IconButton>
             </Tooltip>
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-3">
             <label
               className="text-slate-800 dark:text-gray-300"
               htmlFor="salary"
@@ -121,13 +121,14 @@ export default function CalculationBox(props) {
               id="salary"
               type="number"
               value={salary}
+              required
               onChange={(e) => setSalary(e.target.value)}
-              className="mt-2 w-full p-3 bg-gray-100 dark:bg-neutral-600 dark:text-white dark:placeholder-gray-400"
+              className="mt-1 w-full p-2 bg-gray-100 dark:bg-neutral-600 dark:text-white dark:placeholder-gray-400"
               name="salary"
               placeholder="Ingresa tu sueldo actual"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-3">
             <label
               className="text-slate-800 dark:text-gray-300"
               htmlFor="period"
@@ -138,7 +139,7 @@ export default function CalculationBox(props) {
               id="period"
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
-              className="mt-2 w-full p-3 bg-gray-100 dark:bg-neutral-600 dark:text-white"
+              className="mt-1 w-full p-2 bg-gray-100 dark:bg-neutral-600 dark:text-white"
             >
               <option value="3">Últimos 3 meses</option>
               <option value="6">Últimos 6 meses</option>
@@ -148,11 +149,11 @@ export default function CalculationBox(props) {
           <input
             type="submit"
             value="Calcular Nuevo Sueldo"
-            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer"
+            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-4 p-2 uppercase font-bold cursor-pointer"
           />
         </form>
         {adjustedSalary && (
-          <div className="mt-5 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md">
+          <div className="mt-4 p-3 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md">
             <p>
               Tu sueldo ajustado es:{" "}
               <span className="font-bold">${adjustedSalary}</span>

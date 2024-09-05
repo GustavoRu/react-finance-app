@@ -36,7 +36,7 @@ export default function LineChart(props) {
       })
       .then((response) => {
         if (response.status == 200) {
-          console.log("DATAINFLATION", response.results);
+          // console.log("DATAINFLATION", response.results);
           setDataInflation(response.results);
         } else {
         }
@@ -56,7 +56,7 @@ export default function LineChart(props) {
   useEffect(() => {
     let dataLineAux = [...dataLine];
     // let dataArrAux =
-    console.log("dataLineAux", dataLineAux);
+    // console.log("dataLineAux", dataLineAux);
     dataInflation.forEach((el, index) => {
       dataLineAux[0].data[index].y = el.valor;
     });
