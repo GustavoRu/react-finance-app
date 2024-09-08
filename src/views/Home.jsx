@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import LineChart from "../components/LineChart";
 import CurrencyBox from "../components/CurrencyBox";
 import CalculationBox from "../components/CalculationBox";
+import useInflation from "../hooks/useInflation";
 
 export default function Home(props) {
+  const { hola } = useInflation();
   const [dataDollars, setDataDollars] = useState([]);
   const [dataInflation, setDataInflation] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +34,6 @@ export default function Home(props) {
     fetchDataDollars();
     // fetchDataInflation();
   }, []);
-
   return (
     <div className="min-h-screen bg-[#1a202c] dark:bg-[#1a202c] p-7">
       <div className="grid gap-6">

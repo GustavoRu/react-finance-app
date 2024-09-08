@@ -3,7 +3,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 
 export default function AuthLayout() {
   return (
-    <main className="max-w-4xl m-auto mt-10 md:mt-28 flex flex-col md:flex-row items-center">
+    <main className="max-w-4xl m-auto mt-10 md:mt-24 flex flex-col md:flex-row items-center">
       {/* <img
         src="../../public/img/icons8-caja-de-dinero.svg"
         alt="Imagen app"

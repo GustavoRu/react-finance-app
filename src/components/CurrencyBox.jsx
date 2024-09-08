@@ -23,14 +23,14 @@ export default function CurrencyBox({ type, buyPrice, sellPrice, spread }) {
         {/* Precios */}
       <div className="grid grid-cols-2 gap-4">
         <div className="flex flex-col items-center">
-          <p className="text-sm text-gray-500 dark:text-gray-300">Comprá a:</p>
+          <p className="text-sm text-gray-500 dark:text-gray-300">Vendé a:</p>
           <span className="text-2xl font-bold text-indigo-600">${buyPrice}</span>
         </div>
-
         <div className="flex flex-col items-center">
-          <p className="text-sm text-gray-500 dark:text-gray-300">Vendé a:</p>
+          <p className="text-sm text-gray-500 dark:text-gray-300">Comprá a:</p>
           <span className="text-2xl font-bold text-green-600">${sellPrice}</span>
         </div>
+
       </div>
 
       {/* Spread */}

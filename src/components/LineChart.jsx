@@ -26,7 +26,7 @@ export default function LineChart(props) {
 
   const fetchDataInflation = () => {
     fetch(
-      "https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/27/2024-01-01/2024-09-01"
+      "https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/27/2024-01-01/2024-12-30"
     )
       .then((response) => {
         if (!response.ok) {
@@ -36,7 +36,6 @@ export default function LineChart(props) {
       })
       .then((response) => {
         if (response.status == 200) {
-          // console.log("DATAINFLATION", response.results);
           setDataInflation(response.results);
         } else {
         }
@@ -55,9 +54,11 @@ export default function LineChart(props) {
 
   useEffect(() => {
     let dataLineAux = [...dataLine];
+    let dataInflationAux = [...dataInflation];
+    dataInflationAux.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
     // let dataArrAux =
     // console.log("dataLineAux", dataLineAux);
-    dataInflation.forEach((el, index) => {
+    dataInflationAux.forEach((el, index) => {
       dataLineAux[0].data[index].y = el.valor;
     });
     setDataLine(dataLineAux);
