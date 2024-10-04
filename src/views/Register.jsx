@@ -1,12 +1,43 @@
+import { createRef, useState } from "react";
 import { Link } from "react-router-dom";
+import clientAxios from "../config/axios";
+import AlertError from "./AlertError";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Register() {
+  const nameRef = createRef();
+  const emailRef = createRef();
+  const passwordRef = createRef();
+  const passwordConfirmationRef = createRef();
+  const [errors, setErrors] = useState([]);
+  const { register } = useAuth({ middleware: "guest", url: "/" });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const dataObj = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      password_confirmation: passwordConfirmationRef.current.value,
+    };
+    register(dataObj, setErrors)
+  };
+
   return (
     <>
-      <h1 className="text-4xl font-black text-gray-800 dark:text-white">Crea tu cuenta</h1>
-      <p className="text-gray-600 dark:text-gray-300">Crea tu cuenta llenando el formulario</p>
+      <h1 className="text-4xl font-black text-gray-800 dark:text-white">
+        Crea tu cuenta
+      </h1>
+      <p className="text-gray-600 dark:text-gray-300">
+        Crea tu cuenta llenando el formulario
+      </p>
       <div className="bg-white dark:bg-neutral-700 shadow-md rounded-md mt-10 px-5 py-10">
-        <form>
+        <form onSubmit={handleSubmit} noValidate>
+          {errors
+            ? errors.map((error, index) => {
+                return <AlertError key={index}>{error}</AlertError>;
+              })
+            : null}
           <div className="mb-4">
             <label className="text-slate-800 dark:text-gray-300" htmlFor="name">
               Nombre:
@@ -17,10 +48,14 @@ export default function Register() {
               className="mt-2 w-full p-3 bg-gray-100 dark:bg-neutral-600 dark:text-white dark:placeholder-gray-400"
               name="name"
               placeholder="Tu Nombre"
+              ref={nameRef}
             />
           </div>
           <div className="mb-4">
-            <label className="text-slate-800 dark:text-gray-300" htmlFor="email">
+            <label
+              className="text-slate-800 dark:text-gray-300"
+              htmlFor="email"
+            >
               Email:
             </label>
             <input
@@ -29,10 +64,14 @@ export default function Register() {
               className="mt-2 w-full p-3 bg-gray-100 dark:bg-neutral-600 dark:text-white dark:placeholder-gray-400"
               name="email"
               placeholder="Tu Email"
+              ref={emailRef}
             />
           </div>
           <div className="mb-4">
-            <label className="text-slate-800 dark:text-gray-300" htmlFor="password">
+            <label
+              className="text-slate-800 dark:text-gray-300"
+              htmlFor="password"
+            >
               Password:
             </label>
             <input
@@ -41,10 +80,14 @@ export default function Register() {
               className="mt-2 w-full p-3 bg-gray-100 dark:bg-neutral-600 dark:text-white dark:placeholder-gray-400"
               name="password"
               placeholder="Tu Password"
+              ref={passwordRef}
             />
           </div>
           <div className="mb-4">
-            <label className="text-slate-800 dark:text-gray-300" htmlFor="password_confirmation">
+            <label
+              className="text-slate-800 dark:text-gray-300"
+              htmlFor="password_confirmation"
+            >
               Repetir Password:
             </label>
             <input
@@ -53,6 +96,7 @@ export default function Register() {
               className="mt-2 w-full p-3 bg-gray-100 dark:bg-neutral-600 dark:text-white dark:placeholder-gray-400"
               name="password_confirmation"
               placeholder="Repetir Password"
+              ref={passwordConfirmationRef}
             />
           </div>
 

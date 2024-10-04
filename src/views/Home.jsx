@@ -5,7 +5,7 @@ import CalculationBox from "../components/CalculationBox";
 import useInflation from "../hooks/useInflation";
 
 export default function Home(props) {
-  const { hola } = useInflation();
+  const { dollarRates } = useInflation(); //fines didacticos de practica con context
   const [dataDollars, setDataDollars] = useState([]);
   const [dataInflation, setDataInflation] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,6 +31,7 @@ export default function Home(props) {
   };
 
   useEffect(() => {
+    // console.log("hola", hola);
     fetchDataDollars();
     // fetchDataInflation();
   }, []);
